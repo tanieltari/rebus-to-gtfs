@@ -1,0 +1,2976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Johan Rix (Forsler & Stjerna Konsult AB) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:element name="RebusExportDocument" type="ExportDocType1"/>
+	<xs:complexType name="ExportDocType1">
+		<xs:sequence>
+			<xs:element name="ALMA" type="Almas"/>
+			<xs:element name="COORD" type="COORD_TYP2"/>
+			<xs:element name="BYTESINFO" type="BYTESINFO_TYP"/>
+			<xs:element name="FOTNOT" type="FOTNOT_TYP"/>
+			<xs:element name="LAN" type="LAN_TYP"/>
+			<xs:element name="LIN" type="LIN_TYP"/>
+			<xs:element name="LNK" type="LINK_TYP"/>
+			<xs:element name="OML" type="OML_TYP"/>
+			<xs:element name="SAMLIN" type="SAMLIN_TYP"/>
+			<xs:element name="SIGNAL" type="SIGNAL_TYP"/>
+			<xs:element name="STOP" type="STOP_TYP"/>
+			<xs:element name="Timetable" type="Timetables"/>
+			<xs:element name="WALKLINK" type="WALKLINK_TYP"/>
+			<xs:element name="ZON" type="ZON_TYP"/>
+			<xs:element name="ZONAVST" type="ZONAVST_TYP"/>
+			<xs:element name="TOM" type="TOM_TYP"/>
+			<xs:element name="SYNONYMS" type="Synonym_TYP"/>
+			<xs:element name="Actlstlst">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Acts" type="ACTLST_TYP"/>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Hentrep">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="ENTREPRENOR" type="Entreprenor_typ"/>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Misc">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="KOMMUN">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="KOMMUN_TYP">
+										<xs:sequence maxOccurs="unbounded">
+											<xs:element name="KOMMUNSPEC" type="KOMMUNSPEC_TYP"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="THM">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="THM_TYP">
+										<xs:sequence maxOccurs="unbounded">
+											<xs:element name="THMSPEC" type="THMSPEC_TYP"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Linjenatstyper">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="LINJENATSTYP" type="LINJENATSTYPSPEC_TYP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Linjetyper">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="LINJETYP" type="LINJETYPSPEC_TYP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="NAMN" type="NAMN_TYP"/>
+						<xs:element name="DEST" type="DEST_TYP"/>
+						<xs:element name="DESTALL" type="DEST_TYP"/>
+						<xs:element name="Avtal">
+							<xs:complexType>
+								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+									<xs:element name="AVTAL" type="AVTALSPEC_TYP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Taxetyp">
+							<xs:complexType>
+								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+									<xs:element name="TAXETYP" type="TAXETYPSPEC_TYP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AdressMultipel" type="AdressMultipel_TYP"/>
+						<xs:element name="TRAFIKTYP" type="TRAFIKTYP_TYP"/>
+						<xs:element name="BorderPoints">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="BorderPoint">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="BorderPointSPEC" type="BorderPointSPEC_TYP"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Samtrafik">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SamtrafikregelTOT">
+							<xs:annotation>
+								<xs:documentation>Innehåller samtlig samtrafik oavsett urval</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="SAMTRAFIKREGELSPEC" type="SAMTRAFIKREGELSPEC_TYP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SAMTRAFIKREGEL" type="SAMTRAFIKREGEL_TYP">
+							<xs:annotation>
+								<xs:documentation>Innehåller enbart urvalets samtrafik</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SAMTRAFIKRESULT" type="SAMTRAFIKRESULT_TYP"/>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Fordon">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="FordSpec" type="Ford_TYP"/>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Statistics">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NoStoparea" type="xs:int"/>
+						<xs:element name="NoStopPoints" type="xs:int"/>
+						<xs:element name="NoOfDays" type="xs:int"/>
+						<xs:element name="NoTrips" type="xs:int"/>
+						<xs:element name="NoLines" type="xs:int"/>
+						<xs:element name="NoActivities" type="xs:int"/>
+						<xs:element name="NoConnectedTraffic" type="xs:int"/>
+						<xs:element name="NoFootnotes" type="xs:int"/>
+						<xs:element name="NoPeriods" type="xs:int"/>
+						<xs:element name="NoWalklinks" type="xs:int"/>
+						<xs:element name="NoVehicles" type="xs:int"/>
+						<xs:element name="NoEmptyRuns" type="xs:int"/>
+						<xs:element name="NoMunicipalities" type="xs:int"/>
+						<xs:element name="NoLinetypes" type="xs:int"/>
+						<xs:element name="NoLinNatTypes" type="xs:int"/>
+						<xs:element name="NoNames" type="xs:int"/>
+						<xs:element name="NoDestinations" type="xs:int"/>
+						<xs:element name="NoContracts" type="xs:int"/>
+						<xs:element name="NoTaxtypes" type="xs:int"/>
+						<xs:element name="NoTraffictypes" type="xs:int"/>
+					</xs:sequence>
+					<xs:attribute name="RebusVersion"/>
+					<xs:attribute name="CreatedDate"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="HPLKONV" type="HPLKONV_TYP">
+				<xs:annotation>
+					<xs:documentation>Konverteringtabell för SYD och MITT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LINKONV" type="LINKONV_TYP">
+				<xs:annotation>
+					<xs:documentation>Konverteringstabell för SYD och MITT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopPointFeatueDataTypes" type="DataTypes"/>
+			<xs:element name="PERFOTNOT" type="PERFOT_TYP"/>
+			<xs:element name="TRAFFOTNOT" type="TRAFFOT_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Almas">
+		<xs:sequence>
+			<xs:element name="Almadag" type="Almadag_TYP" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PeriodGrupper" type="PeriodGrupper_TYP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="Almadag_TYP">
+		<xs:sequence>
+			<xs:element name="Datum" type="xs:date"/>
+			<xs:element name="Dagtyp" type="xs:int"/>
+			<xs:element name="DagKlartext" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Tex Måndag eller Påskdagen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TabPeriods" type="TabPeriod_TYP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeriodGrupper_TYP">
+		<xs:sequence>
+			<xs:annotation/>
+			<xs:element name="PeriodGruppId" type="xs:int"/>
+			<xs:element name="TabperId" type="xs:int"/>
+			<xs:element name="PeriodGrupp" type="xs:int"/>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="PgKod" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>tex 100,120!,-200 Betyder går period 100,dessutom period 120 oasett dagtyp, går ej 200</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FotnotID" type="xs:int"/>
+			<xs:element name="Fotnot" type="xs:string"/>
+			<xs:element name="FotnotText" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Period_TYP">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>Tex Skoldagar</xs:documentation>
+			</xs:annotation>
+			<xs:element name="PeriodId" type="xs:int"/>
+			<xs:element name="Period" type="xs:int"/>
+			<xs:element name="PeriodKlartext" type="xs:string"/>
+			<xs:element name="IsSchoolPeriod" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TabPeriod_TYP">
+		<xs:sequence>
+			<xs:element name="TP" type="xs:int"/>
+			<xs:element name="TPind" type="xs:int"/>
+			<xs:element name="Periods" type="Period_TYP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AVTAL_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="AVTALSPEC" type="AVTALSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AVTALSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="avtal">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="avtaltext" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1080"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Entkod" type="xs:string"/>
+			<xs:element name="entreptext" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Fran" type="xs:string"/>
+			<xs:element name="Till" type="xs:string"/>
+			<xs:element name="Bevakning" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BYTESINFO_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="BYTESINFOSPEC" type="BYTESINFOSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BYTESINFOSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="tp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="linje" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="variant1" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="bytesinfo" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DEST_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="DESTSPEC" type="DESTSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DESTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="destkod">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="desttext" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="desttext16" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="16"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="extnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="extnr2" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="talkod" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thm" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Entre" type="ENTDEST_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ENTDEST_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="ENTDESTSPEC" type="ENTDESTSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ENTDESTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="entkod" type="xs:string"/>
+			<xs:element name="extnr" type="xs:int" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ANROPINFO_TYP">
+		<xs:sequence>
+			<xs:element name="Telefon" type="xs:string"/>
+			<xs:element name="Timme" type="xs:int"/>
+			<xs:element name="Minut" type="xs:int"/>
+			<xs:element name="Dygn" type="xs:int"/>
+			<xs:element name="fkl" type="xs:int"/>
+			<xs:element name="Dagar" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FOTNOT_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="FOTNOTSPEC" type="FOTNOTSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="FOTNOTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="fotnot" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FotnotId" type="xs:int"/>
+			<xs:element name="tp" type="xs:int" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Om Global finns det ingen tabellperiod</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tpind" type="xs:int"/>
+			<xs:element name="linje" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Om Global eller fast finns det inget Linjenummer här</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Rikt" type="xs:int"/>
+			<xs:element name="turnr" type="xs:int"/>
+			<xs:element name="Notetype">
+				<xs:annotation>
+					<xs:documentation>0:Global                      1:Fast                          2:Lös</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Styr">
+				<xs:annotation>
+					<xs:documentation>0:ej styrd         1:Periodstyrd         2:Trafiktypstyrd</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Notetext" type="xs:string"/>
+			<xs:element name="Scase" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>True Om stor bokstav</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MedElmer" type="xs:boolean"/>
+			<xs:element name="MedTidtabell" type="xs:boolean"/>
+			<xs:element name="MedStolpe" type="xs:boolean"/>
+			<xs:element name="MedHastus" type="xs:boolean"/>
+			<xs:element name="MedPubtrans" type="xs:boolean"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="Anropinfo" type="ANROPINFO_TYP"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TRAFFOTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Trafiktyp">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Tp" type="xs:int"/>
+			<xs:element name="Tpind" type="xs:int"/>
+			<xs:element name="Fotnot">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="scase" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PERFOTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Periodnr" type="xs:int"/>
+			<xs:element name="TP" type="xs:int"/>
+			<xs:element name="TPind" type="xs:int"/>
+			<xs:element name="Fotnot">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Positiv" type="xs:boolean"/>
+			<xs:element name="scase" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GAR_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="GARSPEC" type="GARSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GARSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="depa" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namn" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="kommun" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="x" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="y" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="entrep" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="STOP_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="STOPAREALST" type="STOPAREA_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="STOPAREA_TYP">
+		<xs:sequence>
+			<xs:element name="gid" type="xs:long"/>
+			<xs:element name="VersionId" type="xs:int"/>
+			<xs:element name="VersionFromDate" type="xs:date"/>
+			<xs:element name="VersionToDate" type="xs:date"/>
+			<xs:element name="InventoryDate" type="xs:date"/>
+			<xs:element name="hplnr">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnam" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ShortName" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hpltyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Typenumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Hämtas från extstopareatype  Om det är en närområdeshållplats så beskrivs områdespolygonen i Coordcluster</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GisAreas">
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="GisArea">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="nod">
+										<xs:complexType>
+											<xs:attribute name="seq" type="xs:int"/>
+											<xs:attribute name="N" type="xs:double"/>
+											<xs:attribute name="E" type="xs:double"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="CSystem" type="xs:int">
+									<xs:annotation>
+										<xs:documentation>Koordinatsystemnummer</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="HplInsideGisarea">
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="Hplnr" type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="kommun" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="zon" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Roadkeeper" type="xs:string"/>
+			<xs:element name="omr" type="xs:string" nillable="false"/>
+			<xs:element name="CoordAvg" type="COORD_TYP"/>
+			<xs:element name="rpass" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnamk" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="bytesprio" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="bytesmarg" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnamt" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="talkod" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="exttalkod" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnamu" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="trainnam" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="monnam" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Trafikverket_StationsKod" type="xs:string"/>
+			<xs:element name="Trafikverket_StationsNamn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Detta är trafikverkets benämningar på Stationer i Sverige.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="azon" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thm" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="anm" type="xs:string"/>
+			<xs:element name="ValidFromDate" type="xs:date"/>
+			<xs:element name="NofDepartures" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Här lagras antal avgångar per dag för exporten aktuelldatum</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmptyYesNo" type="xs:boolean"/>
+			<xs:element name="OuterCallVolume">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="STOPPOINTLST" type="STOPPOINT_TYP"/>
+			</xs:sequence>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="STOPPOINT_UNUSED_LST" type="STOPPOINT_TYP"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLANM_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="HPLANMSPEC" type="HPLANMSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLANMSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="hplnr">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="anm" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="STOPPOINT_TYP">
+		<xs:sequence>
+			<xs:element name="VersionId" type="xs:int"/>
+			<xs:element name="stoppointgid" type="xs:long"/>
+			<xs:element name="journeypatternpointgid" type="xs:long"/>
+			<xs:element name="localnumber" type="xs:int"/>
+			<xs:element name="TypeNumber" type="xs:int"/>
+			<xs:element name="Transportmode" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Transportmode per läge</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="designation" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Läge</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="transportauthoritynumber" type="xs:int"/>
+			<xs:element name="Coord" type="COORD_TYP"/>
+			<xs:element name="koordkval" nillable="true">
+				<xs:annotation>
+					<xs:documentation>InputMethodTypeNumber</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="alias" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="address" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplklass" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="48"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StopPointFeatures" type="Feature" maxOccurs="unbounded"/>
+			<xs:element name="funkr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="funks" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="funkh" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="GPSRadiusMeters" type="xs:int"/>
+			<xs:element name="InternalNote" type="xs:string"/>
+			<xs:element name="ForAlightingYesNo" type="xs:boolean"/>
+			<xs:element name="ForBoardingYesNo" type="xs:boolean"/>
+			<xs:element name="DirectionDegrees" type="xs:int"/>
+			<xs:element name="LengthMeters" type="xs:int"/>
+			<xs:element name="InsidestationYesNo" type="xs:boolean"/>
+			<xs:element name="InDoorsYesNo" type="xs:boolean"/>
+			<xs:element name="PublicNote" type="xs:string"/>
+			<xs:element name="Utrustning" type="UTRUSTNING_TYP"/>
+			<xs:element name="EmptyYesNo" type="xs:boolean"/>
+			<xs:element name="ExportToDII" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLLF_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="HPLLFSPEC" type="HPLLFSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLLFSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="hplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lage" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="x" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="y" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ficka" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UTRUSTNING_TYP">
+		<xs:sequence>
+			<xs:element name="ficka" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cykelskydd" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pendlarpark" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="klocka" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="belysning" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="betongvarme" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reklamskap" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="anslag" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hallplatskur" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="48"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="uentre" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="48"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tsthpl" type="xs:string" nillable="true"/>
+			<xs:element name="tsphpl" type="xs:string" nillable="true"/>
+			<xs:element name="realtid" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hogtalare" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="biljettautomat" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="funkar" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Skaplst" type="SKAP_TYP"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Stolpelst" type="STOLPE_TYP"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SKAP_TYP">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="skap">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="STOLPE_TYP">
+		<xs:sequence>
+			<xs:element name="stolpe">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KOMMUN_TYP"/>
+	<xs:complexType name="KOMMUNSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="kommunnr" type="xs:int"/>
+			<xs:element name="kommunnamn" type="xs:string" nillable="true"/>
+			<xs:element name="lannr" type="xs:int" nillable="true"/>
+			<xs:element name="taxelannr" type="xs:int" nillable="true"/>
+			<xs:element name="Countynr" type="xs:int"/>
+			<xs:element name="Countynamn" type="xs:string"/>
+			<xs:element name="TaxCountynr" type="xs:int"/>
+			<xs:element name="TaxCountynamn" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="THM_TYP"/>
+	<xs:complexType name="THMSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="number" type="xs:int"/>
+			<xs:element name="name" type="xs:string" nillable="true"/>
+			<xs:element name="Code" type="xs:string"/>
+			<xs:element name="ITP" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BorderPointSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="fKommunNr" type="xs:int"/>
+			<xs:element name="tKommunNr" type="xs:int"/>
+			<xs:element name="fLan" type="xs:int"/>
+			<xs:element name="tLan" type="xs:int"/>
+			<xs:element name="FJourneyPatternPointGid" type="xs:long"/>
+			<xs:element name="Fdesignation" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Läge</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fhplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TJourneyPatternPointGid" type="xs:long"/>
+			<xs:element name="Tdesignation" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Läge</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="avst" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Distance from Startpoint</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TransportModeTypeNumber" type="xs:int"/>
+			<xs:element name="Coord" type="COORD_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LAN_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LANSPEC" type="LANSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LANSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="lan">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namn" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TOM_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="TOMSPEC" type="TOMSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="TOMSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="StopareaDepa1" type="xs:long"/>
+			<xs:element name="StopArea2" type="xs:long"/>
+			<xs:element name="Lage1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Endast angivet vid interna tomkörningar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lage2" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Endast angivet vid interna tomkörningar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Typ" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>0 = Depå 1 = Extern 2=Intern Tomkörning (Todo)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TidL" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Tid i minuter Lågtrafik</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TidH" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Tid i minuter Högtrafik</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Avst" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Avstånd i meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hast" type="xs:int"/>
+			<xs:element name="Kvalite" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LIN_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LINSPEC" type="LINSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="COORD_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="COORD" type="COORDSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="COORDSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="CoordinateSystemNumber" type="xs:int"/>
+			<xs:element name="CoordinateSystemName" type="xs:string"/>
+			<xs:element name="Current" type="xs:boolean"/>
+			<xs:element name="Northing" type="xs:double"/>
+			<xs:element name="Easting" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="COORDCLUSTER_TYP"/>
+	<xs:complexType name="COORDSPECCLUSTER_TYP">
+		<xs:sequence>
+			<xs:element name="Northing" type="xs:double"/>
+			<xs:element name="Easting" type="xs:double"/>
+			<xs:element name="Sequence" type="xs:int"/>
+			<xs:element name="CoordinateSystemNumber" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="COORD_TYP2">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="COORD" type="COORDSPEC_TYP2"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="COORDSPEC_TYP2">
+		<xs:sequence>
+			<xs:element name="CoordinateSystemNumber" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Contains  a list of the different Coordinatesystems in the actual export</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateSystemName" type="xs:string"/>
+			<xs:element name="Current" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>True if the coordinatesystem is the used by the Traffic company</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Linje" type="xs:int"/>
+			<xs:element name="Variantnr" type="xs:int"/>
+			<xs:element name="Kvar" type="xs:int"/>
+			<xs:element name="Kvartxt" type="xs:string"/>
+			<xs:element name="Startdestinationkod" type="xs:int"/>
+			<xs:element name="Startdestinationtext" type="xs:string"/>
+			<xs:element name="Frandestinationkod" type="xs:int"/>
+			<xs:element name="Frandestinationtext" type="xs:string"/>
+			<xs:element name="LINSPECSTOP" type="LINSPECSTOP_TYP" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINSPECSTOP_TYP">
+		<xs:sequence>
+			<xs:element name="hplnr">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="avst" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lage" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hastighet" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ankinttid" type="xs:int"/>
+			<xs:element name="inttid" nillable="true">
+				<xs:annotation>
+					<xs:documentation>avgångstid i sekunder</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ankintminut" type="xs:int"/>
+			<xs:element name="intminut" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Avrundat till hel minut</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regler" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="vsek" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pa" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="av" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="actlstid" type="xs:int"/>
+			<xs:element name="note" type="xs:string"/>
+			<xs:element name="noteid" type="xs:int"/>
+			<xs:element name="nodtyp" type="xs:string"/>
+			<xs:element name="Trafiktyp" type="xs:string"/>
+			<xs:element name="UtropNr" type="xs:int"/>
+			<xs:element name="Namnutrop" type="xs:int"/>
+			<xs:element name="TrafiktypDBid" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJEUNION_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LINJEUNIONSPEC" type="LINJEUNIONSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJEUNIONSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="ynhpl" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Innehåller strängen Y eller N</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hplnr" type="xs:int" nillable="true"/>
+			<xs:element name="hpllage" type="xs:string" nillable="true"/>
+			<xs:element name="vsek" type="xs:short" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJENATSTYP_TYP">
+		<xs:sequence>
+			<xs:element name="LINJENATSTYPSPEC" type="LINJENATSTYPSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJENATSTYPSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="linjenattyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="text" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ejpris" type="xs:boolean"/>
+			<xs:element name="ejbock" type="xs:boolean"/>
+			<xs:element name="naromrade" type="xs:boolean"/>
+			<xs:element name="sekvens" type="xs:int"/>
+			<xs:element name="layout" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJETYP_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LINJETYPSPEC" type="LINJETYPSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINJETYPSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="linjetyp">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="text" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ejpris" type="xs:boolean" nillable="true"/>
+			<xs:element name="ejbock" type="xs:boolean" nillable="true"/>
+			<xs:element name="naromrade" type="xs:boolean"/>
+			<xs:element name="sekvens" type="xs:int"/>
+			<xs:element name="layout" type="xs:int"/>
+			<xs:element name="linjetypid" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINK_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LINKSPEC" type="LINKSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="LINKSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="FJourneyPatternPointGid" type="xs:long"/>
+			<xs:element name="Fdesignation" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Läge</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fhplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TJourneyPatternPointGid" type="xs:long"/>
+			<xs:element name="Tdesignation" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Läge</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="avst" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Payed distance</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hast" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TransportModeTypeNumber" type="xs:int"/>
+			<xs:sequence>
+				<xs:element name="GisLinks">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Gislink">
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded">
+										<xs:element name="nd">
+											<xs:complexType>
+												<xs:attribute name="seq" type="xs:int"/>
+												<xs:attribute name="N" type="xs:double"/>
+												<xs:attribute name="E" type="xs:double"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="CSystem" type="xs:int">
+										<xs:annotation>
+											<xs:documentation>Koordinatsystemnummer</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="Kommuns">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="Kommunfordelning">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Procent" type="xs:double"/>
+										<xs:element name="avstand" type="xs:int"/>
+										<xs:element name="Kommunkod" type="xs:int"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NAMN_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="NAMNSPEC" type="NAMNSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NAMNSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="namnkod">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="extnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="extnr2" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="talkod" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namntext" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OML_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="OMLSPEC" type="OMLSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="OMLSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="omlopp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ArbomrID" type="xs:int"/>
+			<xs:element name="ArbOmr" type="xs:string"/>
+			<xs:element name="gfallid" type="xs:int"/>
+			<xs:element name="gfall" type="xs:string" nillable="true"/>
+			<xs:element name="garid" type="xs:long"/>
+			<xs:element name="gar" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="mintottid" type="xs:int"/>
+			<xs:element name="maxstilltidH" type="xs:int" nillable="true"/>
+			<xs:element name="maxstilltidB" type="xs:int"/>
+			<xs:element name="maxstillers" type="xs:int"/>
+			<xs:element name="avtal" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="entrep" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fordonstyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ParkingPointGid" type="xs:long"/>
+			<xs:element name="ParkingPointNr" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OMR_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="OMRSPEC" type="OMRSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OMRSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="omrid">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namnland" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namnstad" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMLIN_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SAMLINSPEC" type="SAMLINSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMLINSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="thm" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="linje" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="rikt" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnamn" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="frantill" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="seq" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hpllage" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hpltyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMTRAFIKRESULT_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SAMTRAFIKRESULTSPEC" type="SAMTRAFIKSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMTRAFIKSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="ftp" type="xs:int" nillable="true"/>
+			<xs:element name="ftpind" type="xs:int"/>
+			<xs:element name="flinje" type="xs:int" nillable="true"/>
+			<xs:element name="ftur" type="xs:int" nillable="true"/>
+			<xs:element name="fDagtyp" type="xs:int"/>
+			<xs:element name="ttp" type="xs:int" nillable="true"/>
+			<xs:element name="ttpind" type="xs:int"/>
+			<xs:element name="tlinje" type="xs:int" nillable="true"/>
+			<xs:element name="ttur" type="xs:int" nillable="true"/>
+			<xs:element name="tDagtyp" type="xs:int"/>
+			<xs:element name="Anktid" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ankommande liinjes tid vid byteshållplats i sekunder</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Avgtid" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Avgående liinjes tid vid byteshållplats i sekunder</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Maxvantetid" type="xs:int"/>
+			<xs:element name="hplnr" type="xs:int" nillable="true"/>
+			<xs:element name="Startdatum" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Startdatum för samtrafikmasken</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="masks" type="MASK_TYP">
+				<xs:annotation>
+					<xs:documentation>Masken är beräknad som snittet mellan de ingående turerna</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroupDepTime" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Gruppering av samtrafik på avgångstid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroupArrTime" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Gruppering av samtrafik på ankomsttid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMTRAFIKREGEL_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SAMTRAFIKREGELSPEC" type="SAMTRAFIKREGELSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SAMTRAFIKREGELSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="flinje" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="frikt" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tlinje" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="trikt" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnr" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ftid" nillable="true">
+				<xs:annotation>
+					<xs:documentation>fråntid i klockslagsformat tex 0400</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ttid" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Tilltid</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="vtid" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Max Väntetid i minuter</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="minvtid" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Min väntetid i minuter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bytesmarg" type="xs:int"/>
+			<xs:element name="minutdiff" type="xs:int"/>
+			<xs:element name="dagtyp" type="xs:string"/>
+			<xs:element name="hplnr2" type="xs:int"/>
+			<xs:element name="FromThm" type="xs:string"/>
+			<xs:element name="ToThm" type="xs:string"/>
+			<xs:element name="ContinuingVehicle" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Is set to true when the same vehicle is continuing on the connecting line, i.e. the trips are in the same block.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FromDate" type="xs:date"/>
+			<xs:element name="ToDate" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SIGNAL_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SIGNALSPEC" type="SIGNALSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="SIGNALSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="actlistID" type="xs:int"/>
+			<xs:element name="korsid" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="KorsningsExternNummer" type="xs:int"/>
+			<xs:element name="tp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tpind" type="xs:int"/>
+			<xs:element name="linje" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnr1" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lage1" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hplnr2" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lage2" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="prioritetskod" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pa" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="av" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pre" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Municipality" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Synonym_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SynonymSPEC" type="SynonymSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="SynonymSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:int"/>
+			<xs:element name="SearchText" type="xs:string"/>
+			<xs:element name="NewText" type="xs:string"/>
+			<xs:element name="Type" type="xs:int"/>
+			<xs:element name="Version" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Timetables">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Timetable" type="TRAFFICSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="TRAFFICSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="tp" type="xs:int"/>
+			<xs:element name="TPInd" type="xs:int"/>
+			<xs:element name="TabperId" type="xs:int"/>
+			<xs:element name="tptext" type="xs:string"/>
+			<xs:element name="TabId">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="linje">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="rikt">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="status" type="xs:boolean" nillable="true"/>
+			<xs:element name="radio" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+						<xs:maxInclusive value="32767"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="alias" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="16"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="linjetyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nattyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="rtab" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="via" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thm" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="thmnr" type="xs:int" nillable="true"/>
+			<xs:element name="linjerubrik" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TabAnm" type="xs:string"/>
+			<xs:element name="Talkod" type="xs:int"/>
+			<xs:element name="TransportModeType" type="xs:int"/>
+			<xs:element name="TransportModeName" type="xs:string"/>
+			<xs:element name="EntrepID" type="xs:int"/>
+			<xs:element name="EntrepKod" type="xs:string"/>
+			<xs:element name="EntrepNamn" type="xs:string"/>
+			<xs:sequence>
+				<xs:element name="Trips" type="TRIP_TYP"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="LinjeUnion" type="LINJEUNION_TYP"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TAXETYP_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="TAXETYPSPEC" type="TAXETYPSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TAXETYPSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="taxetyp">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namn" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TRAFIKTYP_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="TRAFIKTYPSPEC" type="TRAFIKTYPSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TRAFIKTYPSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="tp" type="xs:int" nillable="true"/>
+			<xs:element name="Tpind" type="xs:int"/>
+			<xs:element name="trafiktyp" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="namn" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="80"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fotnot" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="anropstyrd" type="xs:boolean" nillable="true"/>
+			<xs:element name="TrafiktypDbID" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdressMultipel_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="AdressMultipelSPEC" type="AdressMultipelSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdressMultipelSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="MultipelID" type="xs:int"/>
+			<xs:element name="Multipel" type="xs:int"/>
+			<xs:element name="Ort" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FreeAttributes">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="FreeAttribute" type="FreeAttribute"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FreeAttribute">
+		<xs:sequence>
+			<xs:element name="AttributeName" type="xs:string"/>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TRIP_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<!--100212 JE
+			<xs:element name="idtrip" type="xs:integer"/>
+					<xs:annotation>
+					<xs:documentation>Tidigare tänkt som ett sorteringsindex i listan. Beslutat att istället sortera om collection när 	ändringar görs i den.</xs:documentation>
+				</xs:annotation>
+			-->
+			<xs:element name="Trip">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Turnr" type="xs:int"/>
+						<xs:element name="turx">
+							<xs:annotation>
+								<xs:documentation>1=F 2=P 3=T 4=X</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="-2147483648"/>
+									<xs:maxInclusive value="2147483647"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="turxTxt" type="xs:string"/>
+						<xs:element name="Varianten" type="xs:int"/>
+						<xs:element name="Avstand" type="xs:int">
+							<xs:annotation>
+								<xs:documentation>Turens totala avstånd</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="hsek">
+							<xs:annotation>
+								<xs:documentation>Håller reda på horisontell sorteringsordning i turlistan</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="-2147483648"/>
+									<xs:maxInclusive value="2147483647"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Turanm123" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Här ligger de tre turanmärkningarna i rätt ordning och plats</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Avghplnr" type="xs:int"/>
+						<xs:element name="Ankhplnr" type="xs:int"/>
+						<xs:element name="AvgStopAreaGid" type="xs:long"/>
+						<xs:element name="AnkStopAreaGid" type="xs:long"/>
+						<xs:element name="AvgStopPointGid" type="xs:long"/>
+						<xs:element name="AnkStopPointGid" type="xs:long"/>
+						<xs:element name="AvgLage" type="xs:string"/>
+						<xs:element name="AnkLage" type="xs:string"/>
+						<xs:element name="Avgtid" type="xs:int"/>
+						<xs:element name="Anktid" type="xs:int"/>
+						<xs:element name="Avgtidsek" type="xs:int"/>
+						<xs:element name="Anktidsek" type="xs:int"/>
+						<xs:element name="Turkod" type="xs:string"/>
+						<xs:element name="Turkodtxt" type="xs:string"/>
+						<xs:element name="Trafiktyp" type="xs:string"/>
+						<xs:element name="Trafiktyptxt" type="xs:string"/>
+						<xs:element name="TrafiktypDBID" type="xs:int"/>
+						<xs:element name="Period" type="xs:int"/>
+						<xs:element name="PeriodNamn" type="xs:string"/>
+						<xs:element name="InsPer" type="xs:int"/>
+						<xs:element name="InsPerNamn" type="xs:string"/>
+						<xs:element name="PeriodGrupp" type="xs:int"/>
+						<xs:element name="PeriodGruppNamn" type="xs:string"/>
+						<xs:element name="EntrepDefaultKod" type="xs:string"/>
+						<xs:element name="EntrepDefaultNamn" type="xs:string"/>
+						<xs:element name="Dagar" type="xs:string"/>
+						<xs:element name="Dagtyp" type="xs:int"/>
+						<xs:element name="Kvar" type="xs:int"/>
+						<xs:element name="KvarTxt" type="xs:string"/>
+						<xs:element name="FK_ReturnVariantTripId" type="xs:int"/>
+						<xs:element name="Svar" type="xs:string"/>
+						<xs:element name="AvtalsNr" type="xs:int"/>
+						<xs:element name="AvtalsNamn" type="xs:string"/>
+						<xs:element name="PubtransInfPassCondDII3" type="xs:string"/>
+						<xs:element name="PubtransPrintMedia" type="xs:boolean"/>
+						<xs:element name="PubtransProduct" type="xs:string"/>
+						<!-- List of VIADEST_TYP in this trip.-->
+						<xs:element name="ViaDests" type="VIADEST_TYP" maxOccurs="unbounded"/>
+						<xs:element name="ReturnVariants" type="RETURNVARIANT_TYP" maxOccurs="unbounded"/>
+						<xs:element name="Tagnr" type="xs:int"/>
+						<xs:element name="TRV_TrainNr" type="xs:int"/>
+						<xs:element name="TRV_TrainVariant" type="xs:int"/>
+						<xs:element name="DestKod" type="xs:int"/>
+						<xs:element name="DestTxt" type="xs:string"/>
+						<xs:element name="DestTxtShort" type="xs:string"/>
+						<xs:element name="DestExtnr" type="xs:int"/>
+						<xs:element name="DestExtnr2" type="xs:int"/>
+						<xs:element name="FranDestKod" type="xs:int"/>
+						<xs:element name="FranDestTxt" type="xs:string"/>
+						<xs:element name="FranDestShortTxt" type="xs:string"/>
+						<xs:element name="FtypKravTyp" type="xs:string"/>
+						<xs:element name="FtypKravTxt" type="xs:string"/>
+						<xs:element name="Taxetyp" type="xs:string"/>
+						<xs:element name="TaxetypNamn" type="xs:string"/>
+						<xs:element name="AnmTxt" type="xs:string"/>
+						<xs:element name="Startdatum" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Startdatum för alla turens maskar inklusive Kupps</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FreeAttributes" type="FreeAttributes"/>
+						<xs:sequence>
+							<xs:element name="Masks" type="MASK_TYP">
+								<xs:annotation>
+									<xs:documentation>Turens giltighet</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:element name="Kupps" type="KUPP_TYP"/>
+						</xs:sequence>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MASK_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="mask" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KUPP_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Kupp">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ArbOmrID" type="xs:int"/>
+						<xs:element name="ArbOmrNamn" type="xs:string"/>
+						<xs:element name="gfallid" type="xs:int"/>
+						<xs:element name="gfallkod" type="xs:string"/>
+						<xs:element name="gfalltxt" type="xs:string"/>
+						<xs:element name="Omlopp" type="xs:int"/>
+						<xs:element name="Ftyptxt" type="xs:string"/>
+						<xs:element name="EntID" type="xs:int"/>
+						<xs:element name="Entreptxt" type="xs:string"/>
+						<xs:element name="HEntreptxt" type="xs:string"/>
+						<xs:element name="AvtalNr" type="xs:int"/>
+						<xs:element name="DelpaketNamn" type="xs:string"/>
+						<xs:sequence>
+							<xs:element name="Masks" type="MASK_TYP"/>
+						</xs:sequence>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RETURNVARIANT_TYP">
+		<xs:sequence>
+			<xs:element name="FK_TurID" type="xs:int"/>
+			<xs:element name="Linje" type="xs:int"/>
+			<xs:element name="Rikt" type="xs:int"/>
+			<xs:element name="Kvar" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- A VIADEST_TYP is created from a DEST_TYP that has been selected as a secondary destination in Rebus. Most data is from the selected DEST_TYP.-->
+	<xs:complexType name="VIADEST_TYP">
+		<xs:sequence>
+			<!-- Destination code for the selected secondary destination.-->
+			<xs:element name="ViaDestkod" type="xs:string"/>
+			<!-- Database id for the selected secondary destination.-->
+			<xs:element name="FK_DestID" type="xs:int"/>
+			<!-- Sequence number in the list of VIADEST_TYP.-->
+			<xs:element name="Sekv" type="xs:int"/>
+			<!-- Meaning of secondary destination. Values can be ENDS_AT, VIA, TRANSFER_AT, CONTINUE_TO, MESSAGE, UNKNOWN.-->
+			<xs:element name="PTmeanSecDest" type="xs:int"/>
+			<!-- Destination code for the secondary destination.-->
+			<xs:element name="Destkod" type="xs:string"/>
+			<!-- Name of the secondary destination.-->
+			<xs:element name="Destination" type="xs:string"/>
+			<!-- Short name of the secondary destination.-->
+			<xs:element name="Dest16" type="xs:string"/>
+			<!-- Transport authtority connected to this secondary destination.-->
+			<xs:element name="Thm" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTLST_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="ACT_TYP">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ActLstID" type="xs:int"/>
+						<xs:element name="Text" type="xs:string"/>
+						<xs:element name="FiktivNod" type="ACTFIKTIVNOD_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Dest" type="ACTDEST_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="InfoText" type="ACTINFOTEXT_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Tagnummer" type="ACTTAGNUMMER_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="TagPunkt" type="ACTTAGPUNKT_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="SignalPrio" type="ACTSIGNALPRIO_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="RadioPunkt" type="ACTRADIOPUNKT_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="InternNr" type="xs:int">
+							<xs:annotation>
+								<xs:documentation>Används för Komframexporten</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="BorderActs" type="ACTBORDER_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="WheelLubeActs" type="ACTWHEELLUBE_TYP" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="RouteMessages" type="RouteMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTFIKTIVNOD_TYP">
+		<xs:sequence>
+			<xs:element name="FiktivnodID" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="ZoneGid" type="xs:long"/>
+			<xs:element name="KommunGid" type="xs:long"/>
+			<xs:element name="Zon" type="xs:int"/>
+			<xs:element name="ZonNamn" type="xs:string"/>
+			<xs:element name="KommunNamn" type="xs:string"/>
+			<xs:element name="Sekv" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTBORDER_TYP">
+		<xs:sequence>
+			<xs:element name="BordernodID" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="ZoneBefore" type="xs:int"/>
+			<xs:element name="ZoneNameBefore" type="xs:string"/>
+			<xs:element name="ZoneGidBefore" type="xs:long"/>
+			<xs:element name="ZoneAfter" type="xs:int"/>
+			<xs:element name="ZoneNameAfter" type="xs:string"/>
+			<xs:element name="ZoneGidAfter" type="xs:long"/>
+			<xs:element name="MunicipalityGidBefore" type="xs:long"/>
+			<xs:element name="MunicipalityNameBefore" type="xs:string"/>
+			<xs:element name="MunicipalityGidAfter" type="xs:long"/>
+			<xs:element name="MunicipalityNameAfter" type="xs:string"/>
+			<xs:element name="CountyBefore" type="xs:long"/>
+			<xs:element name="CountyAfter" type="xs:long"/>
+			<xs:element name="CountyNameBefore" type="xs:string"/>
+			<xs:element name="CountyNameAfter" type="xs:string"/>
+			<xs:element name="TransportModeTypeNumber" type="xs:int"/>
+			<xs:element name="BorderCoord" type="COORD_TYP"/>
+			<xs:element name="Sekv" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTTAGNUMMER_TYP">
+		<xs:sequence>
+			<xs:element name="TagNrId" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="Tagnummer" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTWHEELLUBE_TYP">
+		<xs:sequence>
+			<xs:element name="WheelLubeId" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="Amount" type="xs:int"/>
+			<xs:element name="DayType" type="xs:int"/>
+			<xs:element name="FromTime" type="xs:int"/>
+			<xs:element name="ToTime" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+			<xs:element name="Dirty" type="xs:boolean"/>
+			<xs:element name="Delete" type="xs:boolean" default="false"/>
+			<xs:element name="DeleteFromList" type="xs:boolean" default="false"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTDEST_TYP">
+		<xs:sequence>
+			<xs:element name="OmskyltId" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="Destid" type="xs:int"/>
+			<xs:element name="Destkod" type="xs:int"/>
+			<xs:element name="DestNamn" type="xs:string"/>
+			<xs:element name="Dest16" type="xs:string"/>
+			<xs:element name="ExtNr" type="xs:int"/>
+			<xs:element name="ExtNr2" type="xs:int"/>
+			<xs:element name="Talkod" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+			<!-- ViaDests is a collection of via destinations that has been set as secondary destination for this ACDEST_TYP. -->
+			<xs:element name="ViaDests" type="VIADEST_TYP" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTINFOTEXT_TYP">
+		<xs:sequence>
+			<xs:element name="InfoId" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="InfotextId" type="xs:int"/>
+			<xs:element name="Infotextkod" type="xs:int"/>
+			<xs:element name="Infotext" type="xs:string"/>
+			<xs:element name="Infotext16" type="xs:string"/>
+			<xs:element name="Talkod" type="xs:string"/>
+			<xs:element name="ExtTalkod" type="xs:string"/>
+			<xs:element name="ExtNr" type="xs:int"/>
+			<xs:element name="ExtNr2" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTTAGPUNKT_TYP">
+		<xs:sequence>
+			<xs:element name="TagPunktId" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="TurId" type="xs:int"/>
+			<xs:element name="Hsek" type="xs:int"/>
+			<xs:element name="MetersAfterStop" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+			<xs:element name="KommunGid" type="xs:long"/>
+			<xs:element name="KommunNamn" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTRADIOPUNKT_TYP">
+		<xs:sequence>
+			<xs:element name="RadioPunktID" type="xs:int"/>
+			<xs:element name="AktListElemId" type="xs:int"/>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="MetersAfterStop" type="xs:int"/>
+			<xs:element name="DataKanal" type="xs:int"/>
+			<xs:element name="RadioKanal" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTSIGNALPRIO_TYP">
+		<xs:sequence>
+			<xs:element name="Korsningsnummer" type="xs:int"/>
+			<xs:element name="KorsningsExternNummer" type="xs:int"/>
+			<xs:element name="Typ" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>1:Preaktivering 2:Påaktivering 3:Avaktivering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Priokod" type="xs:int"/>
+			<xs:element name="MetersBeforeAfter" type="xs:int"/>
+			<xs:element name="Sekv" type="xs:int"/>
+			<xs:element name="Municipality" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACTLSTOLD_TYP">
+		<xs:sequence minOccurs="0">
+			<xs:element name="OMSKYLTTYP" type="OMSKYLT_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OMSKYLT_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="OMSKYLTSPEC" type="OMSKYLTSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OMSKYLTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="aktlistid" type="xs:int"/>
+			<xs:element name="aktlistaelemid" type="xs:int"/>
+			<xs:element name="metersbeforeafter" type="xs:int"/>
+			<xs:element name="destkod" type="xs:int"/>
+			<xs:element name="desttext" type="xs:string"/>
+			<xs:element name="extnr" type="xs:int"/>
+			<xs:element name="extnr2" type="xs:int"/>
+			<xs:element name="talkod" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RouteMessage">
+		<xs:sequence>
+			<xs:element name="RouteMessageId" type="xs:int"/>
+			<xs:element name="aktlistid" type="xs:int"/>
+			<xs:element name="aktlistaelemid" type="xs:int"/>
+			<xs:element name="metersbeforeafter" type="xs:int"/>
+			<xs:element name="Relation" type="xs:string"/>
+			<xs:element name="DestinationSign" type="xs:string"/>
+			<xs:element name="Layout" type="xs:string"/>
+			<xs:element name="Texts" type="RouteMessageText" minOccurs="1" maxOccurs="2"/>
+			<xs:element name="Sequence" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RouteMessageText">
+		<xs:sequence>
+			<xs:element name="RouteMessageTextId" type="xs:int"/>
+			<xs:element name="Text" type="xs:string"/>
+			<xs:element name="Type" type="xs:string"/>
+			<xs:element name="Scrolling" type="xs:int" default="1"/>
+			<xs:element name="Stationary" type="xs:string" default="Left"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ZONAVST_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="ZONAVSTSPEC" type="ZONAVSTSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="ZON_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="ZONSPEC" type="ZONSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="ZONSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="zonnr" type="xs:int"/>
+			<xs:element name="zonnrOrg" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Används enbart av SYD och MITT </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zongid" type="xs:long"/>
+			<xs:element name="zonnamn" type="xs:string" nillable="true"/>
+			<xs:element name="storzon" nillable="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="zontyp" type="xs:int" nillable="true"/>
+			<xs:element name="zontypnamn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Namnet på zontypen från enum.zontyp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kommunnr" type="xs:int" nillable="true"/>
+			<xs:element name="zonlikhet" type="ZONLIKHET_TYP"/>
+			<xs:element name="GisAreas">
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="GisArea">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="nod">
+										<xs:complexType>
+											<xs:attribute name="seq" type="xs:int"/>
+											<xs:attribute name="N" type="xs:double"/>
+											<xs:attribute name="E" type="xs:double"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="CSystem" type="xs:int">
+									<xs:annotation>
+										<xs:documentation>Koordinatsystemnummer</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bZonPolyCalc" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Om true skall adressens koordinat zonberäknas ur zonens Gisarea vid närområde. Annars tas närområdets hållplats zon.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ZONAVSTSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="zonnr1" type="xs:int"/>
+			<xs:element name="zonnr2" type="xs:int"/>
+			<xs:element name="avst" type="xs:int"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="ZONLIKHET_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="ZONLIKHETSPEC" type="ZONLIKHETSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ZONLIKHETSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Ltyp" type="xs:string" nillable="true"/>
+			<xs:element name="zonalias" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Gfall_typ">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="gfall"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Entreprenor">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Entreprenortyp" type="Entreprenor_typ"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Entreprenor_typ">
+		<xs:sequence>
+			<xs:element name="HuvudEntrepID" type="xs:int"/>
+			<xs:element name="HuvudEntrepNr" type="xs:int"/>
+			<xs:element name="HuvudEntrepNamn" type="xs:string"/>
+			<xs:element name="HuvudKortNamn" type="xs:string"/>
+			<xs:element name="HuvudAdress" type="xs:string"/>
+			<xs:element name="HuvudTelenr" type="xs:string"/>
+			<xs:element name="UnderEntreprenor" type="UnderEntreprenor_TYP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnderEntreprenor_TYP">
+		<xs:sequence>
+			<xs:element name="EntId" type="xs:int"/>
+			<xs:element name="EntKod" type="xs:string"/>
+			<xs:element name="EntNamn" type="xs:string"/>
+			<xs:element name="EntAdress" type="xs:string"/>
+			<xs:element name="EntTel" type="xs:string"/>
+			<xs:element name="TryKod" type="xs:string"/>
+			<xs:element name="Radio" type="xs:int"/>
+			<xs:element name="Aktiv" type="xs:boolean"/>
+			<xs:element name="AktDatum" type="xs:dateTime"/>
+			<xs:element name="Garage" type="Garages"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Garages">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Garagetype" type="Garage_typ"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Garage_typ">
+		<xs:sequence>
+			<xs:element name="Nr" type="xs:int"/>
+			<xs:element name="Typ" type="xs:int"/>
+			<xs:element name="Namn" type="xs:string"/>
+			<xs:element name="Adress" type="xs:string"/>
+			<xs:element name="HemmaAvst" type="xs:long"/>
+			<xs:element name="Northing" type="xs:long"/>
+			<xs:element name="Easting" type="xs:long"/>
+			<xs:element name="Kommun" type="xs:long"/>
+			<xs:element name="ParkingPointNr" type="xs:int"/>
+			<xs:element name="ParkingPointGid" type="xs:long"/>
+			<xs:element name="Fordon" type="Ford_TYP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ford_TYP">
+		<xs:sequence>
+			<xs:element name="FordNamn" type="xs:string"/>
+			<xs:element name="Antal" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Antal passagerare</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typ" type="xs:string"/>
+			<xs:element name="FunkR" type="xs:string"/>
+			<xs:element name="FunkS" type="xs:string"/>
+			<xs:element name="FunkH" type="xs:string"/>
+			<xs:element name="TransportModeType" type="xs:int"/>
+			<xs:element name="TransportModeName" type="xs:string"/>
+			<xs:element name="TransportModeSwedishName" type="xs:string"/>
+			<xs:element name="TransportModeNameSamtrafiken" type="xs:string"/>
+			<xs:element name="CO2Faktor" type="xs:float"/>
+			<xs:element name="Anm" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WALKLINK_TYP">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="WALKLINKSPEC">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StopPointGid1" type="xs:long"/>
+						<xs:element name="Hplnr1" type="xs:int"/>
+						<xs:element name="lage1" type="xs:string"/>
+						<xs:element name="Northing1" type="xs:double"/>
+						<xs:element name="Easting1" type="xs:double"/>
+						<xs:element name="StopPointGid2" type="xs:long"/>
+						<xs:element name="Hplnr2" type="xs:int"/>
+						<xs:element name="lage2" type="xs:string"/>
+						<xs:element name="Northing2" type="xs:double"/>
+						<xs:element name="Easting2" type="xs:double"/>
+						<xs:element name="Tid" type="xs:int"/>
+						<xs:element name="TidR" type="xs:int"/>
+						<xs:element name="TidS" type="xs:int"/>
+						<xs:element name="TidH" type="xs:int"/>
+						<xs:element name="TidTxt" type="xs:string"/>
+						<xs:element name="AktDatum" type="xs:dateTime"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="KONV">
+		<xs:sequence>
+			<xs:element name="HPLKONV" type="HPLKONV_TYP"/>
+			<xs:element name="LINKONV" type="LINKONV_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLKONV_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="HPLKONVSPEC" type="HPLKONVSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HPLKONVSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="Hpltyp" type="xs:string"/>
+			<xs:element name="Hplnam" type="xs:string"/>
+			<xs:element name="iss">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Hplnr">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Rsimnr">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINKONV_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LINKONVSPEC" type="LINKONVSPEC_TYP"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LINKONVSPEC_TYP">
+		<xs:sequence>
+			<xs:element name="LokalIss">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LokalLinjenr">
+				<xs:annotation>
+					<xs:documentation>Lokalt linjenummer</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RsimIss" type="xs:int"/>
+			<xs:element name="RsimLinjenr">
+				<xs:annotation>
+					<xs:documentation>Linjenummer med prefix</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="-2147483648"/>
+						<xs:maxInclusive value="2147483647"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Attribute">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:int"/>
+			<xs:element name="TypeId" type="xs:int"/>
+			<xs:element name="TypeName" type="xs:string"/>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="DataTypeId" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataType">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:int"/>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="VBName" type="xs:string"/>
+			<xs:element name="DisplayName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Feature">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:int"/>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="TypeId" type="xs:string"/>
+			<xs:element name="TypeName" type="xs:string"/>
+			<xs:element name="Attributes" type="Attribute" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataTypes">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="DataType" type="DataType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TRAFFOT_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="TRAFFOTSPEC" type="TRAFFOTSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+	<xs:complexType name="PERFOT_TYP">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="PERFOTSPEC" type="PERFOTSPEC_TYP"/>
+		</xs:sequence>
+		<xs:attribute name="RebusVersion"/>
+		<xs:attribute name="CreatedDate"/>
+	</xs:complexType>
+</xs:schema>
