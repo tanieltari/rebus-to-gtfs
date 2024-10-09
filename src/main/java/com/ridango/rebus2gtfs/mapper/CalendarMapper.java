@@ -13,7 +13,7 @@ public class CalendarMapper {
     public static List<Calendar> mapCalendar(ExportDocType1 rebusData) {
         log.info("Mapping calendar...");
         // Find REBUS package start date
-        LocalDate startDate = rebusData.getALMA()
+        var startDate = rebusData.getALMA()
                 .getAlmadag()
                 .stream()
                 .map(a -> a.getDatum().toGregorianCalendar().toZonedDateTime().toLocalDate())
@@ -21,7 +21,7 @@ public class CalendarMapper {
                 .orElseThrow();
 
         // Find REBUS package end date
-        LocalDate endDate = rebusData.getALMA()
+        var endDate = rebusData.getALMA()
                 .getAlmadag()
                 .stream()
                 .map(a -> a.getDatum().toGregorianCalendar().toZonedDateTime().toLocalDate())
