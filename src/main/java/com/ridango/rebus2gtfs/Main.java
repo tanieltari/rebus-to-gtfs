@@ -2,6 +2,7 @@ package com.ridango.rebus2gtfs;
 
 import com.ridango.rebus2gtfs.gtfs.Package;
 import com.ridango.rebus2gtfs.mapper.CalendarMapper;
+import com.ridango.rebus2gtfs.mapper.ShapeMapper;
 import com.ridango.rebus2gtfs.mapper.StopMapper;
 import com.ridango.rebus2gtfs.rebus.*;
 import jakarta.xml.bind.JAXBContext;
@@ -64,8 +65,12 @@ public class Main {
         var gtfsData = new Package();
 
         // Map to GTFS data
+        log.info("Mapping calendars...");
         gtfsData.setCalendars(CalendarMapper.mapCalendar(rebusData));
+        log.info("Mapping stops...");
         gtfsData.setStops(StopMapper.mapStops(rebusData));
+        log.info("Mapping shapes...");
+        gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
 
         log.info("GTFS created, have a nice day!");
     }

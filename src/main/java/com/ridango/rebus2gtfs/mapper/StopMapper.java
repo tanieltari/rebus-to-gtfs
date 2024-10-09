@@ -2,8 +2,8 @@ package com.ridango.rebus2gtfs.mapper;
 
 import com.ridango.rebus2gtfs.gtfs.Stop;
 import com.ridango.rebus2gtfs.gtfs.enums.LocationType;
-import com.ridango.rebus2gtfs.rebus.COORDSPECTYP2;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
+import com.ridango.rebus2gtfs.util.CoordinateUtil;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
@@ -11,17 +11,9 @@ import java.util.stream.Stream;
 
 @Log4j2
 public class StopMapper {
-    private static final String COORDINATE_SYSTEM = "WGS 84";
-
     public static List<Stop> mapStops(ExportDocType1 rebusData) {
         // Find WGS-84 coordinate system number
-        int coordinateSystemNumber = rebusData.getCOORD()
-                .getCOORD()
-                .stream()
-                .filter(c -> COORDINATE_SYSTEM.equals(c.getCoordinateSystemName()))
-                .findFirst()
-                .map(COORDSPECTYP2::getCoordinateSystemNumber)
-                .orElseThrow();
+        var coordinateSystemNumber = CoordinateUtil.findCoordinateSystemNumber(rebusData);
 
         // Map stations
         var stations = rebusData.getSTOP()

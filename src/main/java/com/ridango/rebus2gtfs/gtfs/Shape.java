@@ -9,5 +9,5 @@ public class Shape {
     private String shapeId;
     private double shapePointLatitude;
     private double shapePointLongitude;
-    private int shapePointSequence;
+    private long shapePointSequence;
 }
