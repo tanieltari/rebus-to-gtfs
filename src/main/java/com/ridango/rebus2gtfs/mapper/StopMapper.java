@@ -14,8 +14,6 @@ public class StopMapper {
     private static final String COORDINATE_SYSTEM = "WGS 84";
 
     public static List<Stop> mapStops(ExportDocType1 rebusData) {
-        log.info("Mapping stops...");
-
         // Find WGS-84 coordinate system number
         int coordinateSystemNumber = rebusData.getCOORD()
                 .getCOORD()
@@ -71,7 +69,6 @@ public class StopMapper {
                                     .build();
                         }));
 
-        log.info("Mapping stops finished");
         return Stream.concat(stations, stops).toList();
     }
 }

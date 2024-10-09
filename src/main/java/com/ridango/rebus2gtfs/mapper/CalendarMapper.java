@@ -11,7 +11,6 @@ import java.util.List;
 @Log4j2
 public class CalendarMapper {
     public static List<Calendar> mapCalendar(ExportDocType1 rebusData) {
-        log.info("Mapping calendar...");
         // Find REBUS package start date
         var startDate = rebusData.getALMA()
                 .getAlmadag()
@@ -36,7 +35,6 @@ public class CalendarMapper {
                 .map(TRIPTYP.Trip::getDagtyp)
                 .distinct();
 
-        log.info("Mapping calendar finished");
         return dayTypes
                 .map(dt -> Calendar.builder()
                         .serviceId(dt.toString())
