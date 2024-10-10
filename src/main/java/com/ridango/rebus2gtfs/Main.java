@@ -8,8 +8,8 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.extern.log4j.Log4j2;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.zip.ZipFile;
 
 @Log4j2
@@ -18,12 +18,6 @@ public class Main {
         // Check if REBUS file argument exists
         if (args.length != 1) {
             throw new RuntimeException("Usage: java -jar rebus2gtfs.jar <rebusFileName>");
-        }
-
-        // Get REBUS file path
-        var url = Main.class.getResource(String.format("/%s", args[0]));
-        if (Objects.isNull(url)) {
-            throw new RuntimeException("Could not find REBUS file path");
         }
 
         // Setup XML unmarshaller
@@ -46,7 +40,7 @@ public class Main {
         var rebusData = new ExportDocType1();
 
         // Read REBUS ZIP file contents
-        try (var file = new ZipFile(url.getFile())) {
+        try (var file = new ZipFile(new File(args[0]))) {
             log.info("Loading REBUS file...");
             rebusData.setTimetable(findFileAndUnmarshal(file, unmarshaller, Timetables.class, "timetables.xml"));
             rebusData.setLIN(findFileAndUnmarshal(file, unmarshaller, LINTYP.class, "lin.xml"));
