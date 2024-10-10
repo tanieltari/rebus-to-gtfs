@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import one.util.streamex.StreamEx;
 import org.assertj.core.api.Assertions;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,10 +75,12 @@ public class ShapeMapper {
 
         // Ensure correctness
         log.info("Checking shapes...");
-        shapes.forEach(x -> {
-            Assertions.assertThat(x.getShapePointSequence()).isGreaterThan(0L);
-            Assertions.assertThat(x.getShapePointLatitude()).isBetween(-90.0, 90.0);
-            Assertions.assertThat(x.getShapePointLongitude()).isBetween(-180.0, 180.0);
+        var shapeSequenceSet = new HashSet<String>();
+        shapes.forEach(s -> {
+            Assertions.assertThat(shapeSequenceSet.add(String.format("%s:%d", s.getShapeId(), s.getShapePointSequence()))).isTrue();
+            Assertions.assertThat(s.getShapePointSequence()).isGreaterThan(0L);
+            Assertions.assertThat(s.getShapePointLatitude()).isBetween(-90.0, 90.0);
+            Assertions.assertThat(s.getShapePointLongitude()).isBetween(-180.0, 180.0);
         });
 
         return shapes;

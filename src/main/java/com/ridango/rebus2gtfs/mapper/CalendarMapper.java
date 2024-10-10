@@ -57,10 +57,9 @@ public class CalendarMapper {
 
         // Ensure correctness
         log.info("Checking calendars...");
-        Assertions.assertThat(startDate).isBefore(endDate);
         calendars.forEach(c -> {
-            var dayType = Integer.valueOf(c.getServiceId());
-            Assertions.assertThat(dayType).isBetween(0, 127);
+            Assertions.assertThat(c.getStartDate()).isBefore(c.getEndDate());
+            Assertions.assertThat(Integer.valueOf(c.getServiceId())).isBetween(0, 127);
         });
         return calendars;
     }
