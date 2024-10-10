@@ -3,12 +3,15 @@ package com.ridango.rebus2gtfs.mapper;
 import com.ridango.rebus2gtfs.gtfs.Calendar;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.rebus.TRIPTYP;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Log4j2
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CalendarMapper {
     public static List<Calendar> mapCalendar(ExportDocType1 rebusData) {
         // Find REBUS package start date

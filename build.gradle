@@ -13,6 +13,9 @@ dependencies {
     // Guava
     implementation 'com.google.guava:guava:33.3.1-jre'
 
+    // StreamEx
+    implementation 'one.util:streamex:0.8.3'
+
     // JAXB
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
 

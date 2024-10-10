@@ -2,7 +2,10 @@ package com.ridango.rebus2gtfs.util;
 
 import com.ridango.rebus2gtfs.rebus.COORDSPECTYP2;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CoordinateUtil {
     private static final String COORDINATE_SYSTEM = "WGS 84";
 

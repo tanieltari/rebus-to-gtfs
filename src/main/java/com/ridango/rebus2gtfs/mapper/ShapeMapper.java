@@ -5,14 +5,17 @@ import com.ridango.rebus2gtfs.gtfs.Coordinate;
 import com.ridango.rebus2gtfs.gtfs.Shape;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.util.CoordinateUtil;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import one.util.streamex.StreamEx;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Log4j2
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ShapeMapper {
     public static List<Shape> mapShapes(ExportDocType1 rebusData) {
         // Find WGS-84 coordinate system number
@@ -51,20 +54,15 @@ public class ShapeMapper {
                 .stream()
                 .flatMap(line -> {
                     // Find line variant stop link successive pairs
-                    var lineStopLinks = new LinkedList<String>();
-                    line.getLINSPECSTOP()
-                            .stream()
-                            .reduce((a, b) -> {
-                                lineStopLinks.add(String.format("%d-%s:%d-%s", a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()));
-                                return b;
-                            })
-                            .orElseThrow();
+                    var lineStopLinks = StreamEx.of(line.getLINSPECSTOP())
+                            .pairMap((a, b) -> String.format("%d-%s:%d-%s", a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()))
+                            .toList();
 
                     // Map shapes
                     var shapes = lineStopLinks.stream()
                             .flatMap(ll -> stopLinks.get(ll).stream());
                     return Streams.mapWithIndex(shapes, (c, i) -> Shape.builder()
-                            .shapeId(String.format("%d%d", line.getLinje(), line.getVariantnr()))
+                            .shapeId(String.format("%d-%d", line.getLinje(), line.getVariantnr()))
                             .shapePointLatitude(c.getLatitude())
                             .shapePointLongitude(c.getLongitude())
                             .shapePointSequence(i + 1)

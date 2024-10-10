@@ -4,12 +4,15 @@ import com.ridango.rebus2gtfs.gtfs.Stop;
 import com.ridango.rebus2gtfs.gtfs.enums.LocationType;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.util.CoordinateUtil;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 @Log4j2
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StopMapper {
     public static List<Stop> mapStops(ExportDocType1 rebusData) {
         // Find WGS-84 coordinate system number
