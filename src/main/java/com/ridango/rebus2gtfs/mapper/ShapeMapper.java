@@ -1,17 +1,18 @@
 package com.ridango.rebus2gtfs.mapper;
 
 import com.google.common.collect.Streams;
-import com.ridango.rebus2gtfs.gtfs.Coordinate;
+import com.ridango.rebus2gtfs.util.Coordinate;
 import com.ridango.rebus2gtfs.gtfs.Shape;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.util.CoordinateUtil;
+import com.ridango.rebus2gtfs.util.StopLink;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import one.util.streamex.StreamEx;
+import org.assertj.core.api.Assertions;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -37,31 +38,32 @@ public class ShapeMapper {
                                     .map(lc -> new Coordinate(lc.getN(), lc.getE()))
                                     .toList())
                             .orElse(List.of());
-                    return Map.entry(linkKey, linkCoordinates);
+                    return new StopLink(linkKey, linkCoordinates);
                 })
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
+                        StopLink::getLinkKey,
+                        StopLink::getCoordinates,
                         (a, b) -> {
                             log.info("Duplicate stop link");
-                            return a;
+                            return a.size() > b.size() ? a : b;
                         }
                 ));
 
         // Find each line variant full path by concatenating links
-        return rebusData.getLIN()
+        List<Shape> shapes = rebusData.getLIN()
                 .getLINSPEC()
                 .stream()
                 .flatMap(line -> {
                     // Find line variant stop link successive pairs
                     var lineStopLinks = StreamEx.of(line.getLINSPECSTOP())
-                            .pairMap((a, b) -> String.format("%d-%s:%d-%s", a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()))
-                            .toList();
+                            .pairMap((a, b) -> String.format("%d-%s:%d-%s", a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()));
+
+                    // Flatten line stop links to 1 list
+                    var shapeCoordinates = lineStopLinks
+                            .flatMap(ll -> stopLinks.get(ll).stream());
 
                     // Map shapes
-                    var shapes = lineStopLinks.stream()
-                            .flatMap(ll -> stopLinks.get(ll).stream());
-                    return Streams.mapWithIndex(shapes, (c, i) -> Shape.builder()
+                    return Streams.mapWithIndex(shapeCoordinates, (c, i) -> Shape.builder()
                             .shapeId(String.format("%d-%d", line.getLinje(), line.getVariantnr()))
                             .shapePointLatitude(c.getLatitude())
                             .shapePointLongitude(c.getLongitude())
@@ -69,5 +71,15 @@ public class ShapeMapper {
                             .build());
                 })
                 .toList();
+
+        // Ensure correctness
+        log.info("Checking shapes...");
+        shapes.forEach(x -> {
+            Assertions.assertThat(x.getShapePointSequence()).isGreaterThan(0L);
+            Assertions.assertThat(x.getShapePointLatitude()).isBetween(-90.0, 90.0);
+            Assertions.assertThat(x.getShapePointLongitude()).isBetween(-180.0, 180.0);
+        });
+
+        return shapes;
     }
 }

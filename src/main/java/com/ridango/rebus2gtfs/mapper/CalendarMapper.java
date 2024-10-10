@@ -6,6 +6,7 @@ import com.ridango.rebus2gtfs.rebus.TRIPTYP;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.assertj.core.api.Assertions;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,7 +39,8 @@ public class CalendarMapper {
                 .map(TRIPTYP.Trip::getDagtyp)
                 .distinct();
 
-        return dayTypes
+        // Map calendars
+        var calendars = dayTypes
                 .map(dt -> Calendar.builder()
                         .serviceId(dt.toString())
                         .startDate(startDate)
@@ -52,5 +54,14 @@ public class CalendarMapper {
                         .sunday((dt & 64) > 0)
                         .build())
                 .toList();
+
+        // Ensure correctness
+        log.info("Checking calendars...");
+        Assertions.assertThat(startDate).isBefore(endDate);
+        calendars.forEach(c -> {
+            var dayType = Integer.valueOf(c.getServiceId());
+            Assertions.assertThat(dayType).isBetween(0, 127);
+        });
+        return calendars;
     }
 }

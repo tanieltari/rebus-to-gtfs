@@ -16,6 +16,9 @@ dependencies {
     // StreamEx
     implementation 'one.util:streamex:0.8.3'
 
+    // AssertJ
+    implementation 'org.assertj:assertj-core:3.26.3'
+
     // JAXB
     implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
 
