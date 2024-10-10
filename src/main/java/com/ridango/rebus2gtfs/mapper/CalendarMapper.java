@@ -58,7 +58,8 @@ public class CalendarMapper {
 
         // Ensure correctness
         log.info("Checking calendars...");
-        calendars.forEach(c -> {
+        Assertions.assertThat(calendars.stream().map(Calendar::getServiceId)).doesNotHaveDuplicates();
+        Assertions.assertThat(calendars).allSatisfy(c -> {
             Assertions.assertThat(c.getStartDate()).isBefore(c.getEndDate());
             Assertions.assertThat(Integer.valueOf(c.getServiceId())).isBetween(0, 127);
         });

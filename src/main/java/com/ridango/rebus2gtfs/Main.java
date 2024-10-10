@@ -68,6 +68,7 @@ public class Main {
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
         gtfsData.setAgencies(AgencyMapper.mapAgencies());
         gtfsData.setRoutes(RouteMapper.mapRoutes(rebusData));
+        gtfsData.setTrips(TripMapper.mapTrips(rebusData, gtfsData));
 
         log.info("GTFS created, have a nice day!");
     }

@@ -5,6 +5,7 @@ import com.ridango.rebus2gtfs.util.Coordinate;
 import com.ridango.rebus2gtfs.gtfs.Shape;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.util.CoordinateUtil;
+import com.ridango.rebus2gtfs.util.IdentifierUtil;
 import com.ridango.rebus2gtfs.util.StopLink;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class ShapeMapper {
                 .getLINKSPEC()
                 .parallelStream()
                 .map(lnk -> {
-                    var linkKey = String.format("%d-%s:%d-%s", lnk.getFhplnr(), lnk.getFdesignation(), lnk.getThplnr(), lnk.getTdesignation());
+                    var linkKey = IdentifierUtil.getLinkKey(lnk.getFhplnr(), lnk.getFdesignation(), lnk.getThplnr(), lnk.getTdesignation());
                     var gisLink = lnk.getGisLinks()
                             .getGislink()
                             .stream()
@@ -59,7 +60,7 @@ public class ShapeMapper {
                 .flatMap(line -> {
                     // Find line variant stop link successive pairs
                     var lineStopLinks = StreamEx.of(line.getLINSPECSTOP())
-                            .pairMap((a, b) -> String.format("%d-%s:%d-%s", a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()));
+                            .pairMap((a, b) -> IdentifierUtil.getLinkKey(a.getHplnr(), a.getLage(), b.getHplnr(), b.getLage()));
 
                     // Flatten line stop links to 1 list
                     var shapeCoordinates = lineStopLinks
@@ -67,7 +68,7 @@ public class ShapeMapper {
 
                     // Map shapes
                     return Streams.mapWithIndex(shapeCoordinates, (c, i) -> Shape.builder()
-                            .shapeId(String.format("%d-%d", line.getLinje(), line.getVariantnr()))
+                            .shapeId(IdentifierUtil.getPatternId(line.getLinje(), line.getVariantnr()))
                             .shapePointLatitude(c.getLatitude())
                             .shapePointLongitude(c.getLongitude())
                             .shapePointSequence(i + 1)
@@ -77,14 +78,12 @@ public class ShapeMapper {
 
         // Ensure correctness
         log.info("Checking shapes...");
-        Set<String> shapeSequenceSet = ConcurrentHashMap.newKeySet();
-        shapes.forEach(s -> {
-            Assertions.assertThat(shapeSequenceSet.add(String.format("%s:%d", s.getShapeId(), s.getShapePointSequence()))).isTrue();
+        Assertions.assertThat(shapes.stream().map(s -> String.format("%s:%d", s.getShapeId(), s.getShapePointSequence()))).doesNotHaveDuplicates();
+        Assertions.assertThat(shapes).allSatisfy(s -> {
             Assertions.assertThat(s.getShapePointSequence()).isGreaterThan(0L);
             Assertions.assertThat(s.getShapePointLatitude()).isBetween(-90.0, 90.0);
             Assertions.assertThat(s.getShapePointLongitude()).isBetween(-180.0, 180.0);
         });
-
         return shapes;
     }
 }

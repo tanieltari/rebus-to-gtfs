@@ -9,7 +9,6 @@ import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -37,13 +36,11 @@ public class RouteMapper {
 
         // Ensure correctness
         log.info("Checking routes...");
-        Set<String> routeSet = ConcurrentHashMap.newKeySet();
-        routes.forEach(r -> {
-            Assertions.assertThat(routeSet.add(r.getRouteId())).isTrue();
+        Assertions.assertThat(routes.stream().map(Route::getRouteId)).doesNotHaveDuplicates();
+        Assertions.assertThat(routes).allSatisfy(r -> {
             Assertions.assertThat(r.getRouteShortName()).isNotEmpty();
             Assertions.assertThat(r.getRouteLongName()).isNotEmpty();
         });
-
         return routes;
     }
 }
