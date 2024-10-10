@@ -1,6 +1,7 @@
 package com.ridango.rebus2gtfs;
 
 import com.ridango.rebus2gtfs.gtfs.Package;
+import com.ridango.rebus2gtfs.mapper.AgencyMapper;
 import com.ridango.rebus2gtfs.mapper.CalendarMapper;
 import com.ridango.rebus2gtfs.mapper.ShapeMapper;
 import com.ridango.rebus2gtfs.mapper.StopMapper;
@@ -68,6 +69,7 @@ public class Main {
         gtfsData.setCalendars(CalendarMapper.mapCalendar(rebusData));
         gtfsData.setStops(StopMapper.mapStops(rebusData));
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
+        gtfsData.setAgencies(AgencyMapper.mapAgencies());
 
         log.info("GTFS created, have a nice day!");
     }
