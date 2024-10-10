@@ -12,9 +12,10 @@ import lombok.extern.log4j.Log4j2;
 import one.util.streamex.StreamEx;
 import org.assertj.core.api.Assertions;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Log4j2
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -25,7 +26,8 @@ public class ShapeMapper {
         var coordinateSystemNumber = CoordinateUtil.findCoordinateSystemNumber(rebusData);
 
         // Construct all possible stop links
-        var stopLinks = rebusData.getLNK()
+        var stopLinks = new HashMap<String, List<Coordinate>>();
+        rebusData.getLNK()
                 .getLINKSPEC()
                 .stream()
                 .map(lnk -> {
@@ -44,14 +46,13 @@ public class ShapeMapper {
                     }
                     return new StopLink(linkKey, linkCoordinates.orElse(List.of()));
                 })
-                .collect(Collectors.toMap(
-                        StopLink::getLinkKey,
-                        StopLink::getCoordinates,
-                        (a, b) -> {
-                            log.warn("Duplicate stop link");
-                            return a.size() > b.size() ? a : b;
-                        }
-                ));
+                .forEach(link -> stopLinks.compute(link.getLinkKey(), (k, v) -> {
+                    if (Objects.isNull(v)) {
+                        return link.getCoordinates();
+                    }
+                    log.warn("Duplicate stop link found for {}", link.getLinkKey());
+                    return v.size() < link.getCoordinates().size() ? link.getCoordinates() : v;
+                }));
 
         // Find each line variant full path by concatenating links
         List<Shape> shapes = rebusData.getLIN()
