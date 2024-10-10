@@ -3,14 +3,15 @@ package com.ridango.rebus2gtfs;
 import com.ridango.rebus2gtfs.gtfs.Package;
 import com.ridango.rebus2gtfs.mapper.*;
 import com.ridango.rebus2gtfs.rebus.*;
+import com.ridango.rebus2gtfs.writer.AgencyWriter;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.extern.log4j.Log4j2;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 @Log4j2
 public class Main {
@@ -64,6 +65,15 @@ public class Main {
         gtfsData.setRoutes(RouteMapper.mapRoutes(rebusData));
         gtfsData.setTrips(TripMapper.mapTrips(rebusData, gtfsData));
         gtfsData.setStopTimes(StopTimeMapper.mapStopTimes(rebusData, gtfsData));
+
+        // Write GTFS data to CSV files
+        try (var fout = new FileOutputStream("gtfs.zip")) {
+            try (var zout = new ZipOutputStream(fout)) {
+                AgencyWriter.writeAgencies(zout, gtfsData.getAgencies());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         log.info("GTFS created, have a nice day!");
     }

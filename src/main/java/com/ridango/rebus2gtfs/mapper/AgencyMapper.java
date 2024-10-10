@@ -11,6 +11,7 @@ import java.util.TimeZone;
 @Log4j2
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AgencyMapper {
+    // TODO: Should load agency info from configuration file
     public static final String AGENCY_ID = "1";
     public static final String AGENCY_NAME = "Sörmland";
     public static final String AGENCY_URL = "https://www.sormlandbiljett.se/";
