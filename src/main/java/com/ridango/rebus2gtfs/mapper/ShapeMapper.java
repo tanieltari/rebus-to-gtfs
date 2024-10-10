@@ -12,10 +12,8 @@ import lombok.extern.log4j.Log4j2;
 import one.util.streamex.StreamEx;
 import org.assertj.core.api.Assertions;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Log4j2
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -26,10 +24,10 @@ public class ShapeMapper {
         var coordinateSystemNumber = CoordinateUtil.findCoordinateSystemNumber(rebusData);
 
         // Construct all possible stop links
-        var stopLinks = new HashMap<String, List<Coordinate>>();
+        var stopLinks = new ConcurrentHashMap<String, List<Coordinate>>();
         rebusData.getLNK()
                 .getLINKSPEC()
-                .stream()
+                .parallelStream()
                 .map(lnk -> {
                     var linkKey = String.format("%d-%s:%d-%s", lnk.getFhplnr(), lnk.getFdesignation(), lnk.getThplnr(), lnk.getTdesignation());
                     var gisLink = lnk.getGisLinks()
@@ -57,7 +55,7 @@ public class ShapeMapper {
         // Find each line variant full path by concatenating links
         List<Shape> shapes = rebusData.getLIN()
                 .getLINSPEC()
-                .stream()
+                .parallelStream()
                 .flatMap(line -> {
                     // Find line variant stop link successive pairs
                     var lineStopLinks = StreamEx.of(line.getLINSPECSTOP())
@@ -79,7 +77,7 @@ public class ShapeMapper {
 
         // Ensure correctness
         log.info("Checking shapes...");
-        var shapeSequenceSet = new HashSet<String>();
+        Set<String> shapeSequenceSet = ConcurrentHashMap.newKeySet();
         shapes.forEach(s -> {
             Assertions.assertThat(shapeSequenceSet.add(String.format("%s:%d", s.getShapeId(), s.getShapePointSequence()))).isTrue();
             Assertions.assertThat(s.getShapePointSequence()).isGreaterThan(0L);

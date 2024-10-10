@@ -24,7 +24,7 @@ public class StopMapper {
         // Map stations
         var stations = rebusData.getSTOP()
                 .getSTOPAREALST()
-                .stream()
+                .parallelStream()
                 .map(sa -> {
                     var coordinates = sa.getCoordAvg()
                             .getCOORD()
@@ -45,7 +45,7 @@ public class StopMapper {
         // Map stops
         var stops = rebusData.getSTOP()
                 .getSTOPAREALST()
-                .stream()
+                .parallelStream()
                 .flatMap(sa -> sa.getSTOPPOINTLST()
                         .stream()
                         .map(sp -> {

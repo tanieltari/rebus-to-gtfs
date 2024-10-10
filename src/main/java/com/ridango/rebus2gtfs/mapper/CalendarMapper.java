@@ -35,7 +35,7 @@ public class CalendarMapper {
         // Find unique service day types used by trips
         var dayTypes = rebusData.getTimetable()
                 .getTimetable()
-                .stream()
+                .parallelStream()
                 .flatMap(t -> t.getTrips().getTrip().stream())
                 .map(TRIPTYP.Trip::getDagtyp)
                 .distinct();

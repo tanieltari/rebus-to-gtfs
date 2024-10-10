@@ -1,10 +1,7 @@
 package com.ridango.rebus2gtfs;
 
 import com.ridango.rebus2gtfs.gtfs.Package;
-import com.ridango.rebus2gtfs.mapper.AgencyMapper;
-import com.ridango.rebus2gtfs.mapper.CalendarMapper;
-import com.ridango.rebus2gtfs.mapper.ShapeMapper;
-import com.ridango.rebus2gtfs.mapper.StopMapper;
+import com.ridango.rebus2gtfs.mapper.*;
 import com.ridango.rebus2gtfs.rebus.*;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -70,6 +67,7 @@ public class Main {
         gtfsData.setStops(StopMapper.mapStops(rebusData));
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
         gtfsData.setAgencies(AgencyMapper.mapAgencies());
+        gtfsData.setRoutes(RouteMapper.mapRoutes(rebusData));
 
         log.info("GTFS created, have a nice day!");
     }
