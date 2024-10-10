@@ -1,12 +1,12 @@
 package com.ridango.rebus2gtfs.mapper;
 
 import com.google.common.collect.Streams;
-import com.ridango.rebus2gtfs.util.Coordinate;
+import com.ridango.rebus2gtfs.dto.Coordinate;
 import com.ridango.rebus2gtfs.gtfs.Shape;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
 import com.ridango.rebus2gtfs.util.CoordinateUtil;
 import com.ridango.rebus2gtfs.util.IdentifierUtil;
-import com.ridango.rebus2gtfs.util.StopLink;
+import com.ridango.rebus2gtfs.dto.StopLink;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;

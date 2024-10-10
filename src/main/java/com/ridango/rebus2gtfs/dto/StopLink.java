@@ -1,4 +1,4 @@
-package com.ridango.rebus2gtfs.util;
+package com.ridango.rebus2gtfs.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
