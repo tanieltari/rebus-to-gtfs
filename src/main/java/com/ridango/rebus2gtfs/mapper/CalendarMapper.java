@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CalendarMapper {
     public static List<Calendar> mapCalendar(ExportDocType1 rebusData) {
+        log.info("Mapping calendars...");
         // Find REBUS package start date
         var startDate = rebusData.getALMA()
                 .getAlmadag()

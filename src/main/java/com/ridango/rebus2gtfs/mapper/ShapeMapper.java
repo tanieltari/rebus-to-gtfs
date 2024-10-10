@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ShapeMapper {
     public static List<Shape> mapShapes(ExportDocType1 rebusData) {
+        log.info("Mapping shapes...");
         // Find WGS-84 coordinate system number
         var coordinateSystemNumber = CoordinateUtil.findCoordinateSystemNumber(rebusData);
 
@@ -45,7 +46,7 @@ public class ShapeMapper {
                         StopLink::getLinkKey,
                         StopLink::getCoordinates,
                         (a, b) -> {
-                            log.info("Duplicate stop link");
+                            log.warn("Duplicate stop link");
                             return a.size() > b.size() ? a : b;
                         }
                 ));

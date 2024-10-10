@@ -65,11 +65,8 @@ public class Main {
         var gtfsData = new Package();
 
         // Map to GTFS data
-        log.info("Mapping calendars...");
         gtfsData.setCalendars(CalendarMapper.mapCalendar(rebusData));
-        log.info("Mapping stops...");
         gtfsData.setStops(StopMapper.mapStops(rebusData));
-        log.info("Mapping shapes...");
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
 
         log.info("GTFS created, have a nice day!");
