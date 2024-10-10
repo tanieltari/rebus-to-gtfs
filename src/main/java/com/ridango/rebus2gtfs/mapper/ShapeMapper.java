@@ -36,11 +36,13 @@ public class ShapeMapper {
                             .filter(gl -> gl.getCSystem() == coordinateSystemNumber)
                             .findFirst();
                     var linkCoordinates = gisLink.map(gl -> gl.getNd()
-                                    .stream()
-                                    .map(lc -> new Coordinate(lc.getN(), lc.getE()))
-                                    .toList())
-                            .orElse(List.of());
-                    return new StopLink(linkKey, linkCoordinates);
+                            .stream()
+                            .map(lc -> new Coordinate(lc.getN(), lc.getE()))
+                            .toList());
+                    if (linkCoordinates.isEmpty()) {
+                        log.warn("No link coordinates found for {}", linkKey);
+                    }
+                    return new StopLink(linkKey, linkCoordinates.orElse(List.of()));
                 })
                 .collect(Collectors.toMap(
                         StopLink::getLinkKey,
