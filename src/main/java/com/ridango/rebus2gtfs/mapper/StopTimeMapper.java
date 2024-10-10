@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.ridango.rebus2gtfs.gtfs.Package;
 import com.ridango.rebus2gtfs.gtfs.StopTime;
 import com.ridango.rebus2gtfs.rebus.ExportDocType1;
-import com.ridango.rebus2gtfs.util.EmbarkUtil;
+import com.ridango.rebus2gtfs.util.StopTimeUtil;
 import com.ridango.rebus2gtfs.util.IdentifierUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -49,8 +49,8 @@ public class StopTimeMapper {
                                                 .arrivalTime(tripStartTime.plusSeconds(s.getAnkinttid()))
                                                 .departureTime(tripStartTime.plusSeconds(s.getInttid()))
                                                 .stopSequence(s.getVsek())
-                                                .pickupType(EmbarkUtil.getPickupType(s.getPa()))
-                                                .dropOffType(EmbarkUtil.getDropOffType(s.getAv()))
+                                                .pickupType(StopTimeUtil.getPickupType(s.getPa()))
+                                                .dropOffType(StopTimeUtil.getDropOffType(s.getAv()))
                                                 .timepoint(s.getRegler() > 0)
                                                 .build();
                                     });
