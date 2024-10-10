@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Log4j2
@@ -72,13 +73,14 @@ public class StopMapper {
 
         // Ensure correctness
         log.info("Checking stops...");
+        var stopIds = stops.stream().map(Stop::getStopId).collect(Collectors.toSet());
         Assertions.assertThat(stops.stream().map(Stop::getStopId)).doesNotHaveDuplicates();
         Assertions.assertThat(stops).allSatisfy(s -> {
             Assertions.assertThat(s.getStopLatitude()).isBetween(-90.0, 90.0);
             Assertions.assertThat(s.getStopLongitude()).isBetween(-180.0, 180.0);
         });
         Assertions.assertThat(stops.stream().filter(s -> s.getLocationType() == LocationType.Stop)).allSatisfy(s -> {
-            Assertions.assertThat(stops.stream().map(Stop::getStopId)).contains(s.getParentStation());
+            Assertions.assertThat(stopIds).contains(s.getParentStation());
             Assertions.assertThat(s.getPlatformCode()).isNotNull();
         });
 
