@@ -5,6 +5,7 @@ definitions:
     gradlew: ~/.gradle/wrapper
   steps:
     - step: &build-jar
+        name: Build JAR
         script:
           - ./gradlew shadowJar
         artifacts:
