@@ -1,0 +1,18 @@
+image:
+  name: eclipse-temurin:21-alpine
+definitions:
+  caches:
+    gradlew: ~/.gradle/wrapper
+  steps:
+    - step: &build-jar
+        script:
+          - ./gradlew shadowJar
+        artifacts:
+          - build/libs
+        caches:
+          - gradle
+          - gradlew
+pipelines:
+  branches:
+    main:
+      - step: *build-jar
