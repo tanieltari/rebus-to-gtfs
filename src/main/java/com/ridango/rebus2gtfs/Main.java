@@ -3,7 +3,8 @@ package com.ridango.rebus2gtfs;
 import com.ridango.rebus2gtfs.gtfs.Package;
 import com.ridango.rebus2gtfs.mapper.*;
 import com.ridango.rebus2gtfs.rebus.*;
-import com.ridango.rebus2gtfs.writer.AgencyWriter;
+import com.ridango.rebus2gtfs.writer.*;
+import de.siegmar.fastcsv.writer.CsvWriter;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
@@ -59,6 +60,7 @@ public class Main {
 
         // Map to GTFS data
         gtfsData.setCalendars(CalendarMapper.mapCalendar(rebusData));
+        gtfsData.setCalendarDates(CalendarDateMapper.mapCalendarDates(rebusData));
         gtfsData.setStops(StopMapper.mapStops(rebusData));
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
         gtfsData.setAgencies(AgencyMapper.mapAgencies());
@@ -67,9 +69,20 @@ public class Main {
         gtfsData.setStopTimes(StopTimeMapper.mapStopTimes(rebusData, gtfsData));
 
         // Write GTFS data to CSV files
-        try (var fout = new FileOutputStream("gtfs.zip")) {
-            try (var zout = new ZipOutputStream(fout)) {
-                AgencyWriter.writeAgencies(zout, gtfsData.getAgencies());
+        try (var fos = new FileOutputStream("gtfs.zip")) {
+            try (var zos = new ZipOutputStream(fos)) {
+                try (var w = new OutputStreamWriter(zos)) {
+                    try (var csvWriter = CsvWriter.builder().build(w)) {
+                        AgencyWriter.writeAgencies(zos, csvWriter, gtfsData.getAgencies());
+                        CalendarDateWriter.writeCalendarDates(zos, csvWriter, gtfsData.getCalendarDates());
+                        CalendarWriter.writeCalendars(zos, csvWriter, gtfsData.getCalendars());
+                        RouteWriter.writeRoutes(zos, csvWriter, gtfsData.getRoutes());
+                        ShapeWriter.writeShapes(zos, csvWriter, gtfsData.getShapes());
+                        StopTimeWriter.writeStopTimes(zos, csvWriter, gtfsData.getStopTimes());
+                        StopWriter.writeStops(zos, csvWriter, gtfsData.getStops());
+                        TripWriter.writeTrips(zos, csvWriter, gtfsData.getTrips());
+                    }
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
