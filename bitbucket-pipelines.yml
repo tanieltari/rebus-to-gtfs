@@ -9,7 +9,7 @@ definitions:
         script:
           - ./gradlew shadowJar
         artifacts:
-          - build/libs
+          - build/libs/**
         caches:
           - gradle
           - gradlew
