@@ -5,9 +5,13 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WriterUtil {
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public static String toCsvString(Duration duration) {
         var hours = Strings.padStart(String.valueOf(duration.toHours()), 2, '0');
         var minutes = Strings.padStart(String.valueOf(duration.toMinutesPart()), 2, '0');
@@ -20,5 +24,9 @@ public class WriterUtil {
 
     public static String toCsvString(boolean b) {
         return b ? "1" : "0";
+    }
+
+    public static String toCsvString(LocalDate date) {
+        return DTF.format(date);
     }
 }

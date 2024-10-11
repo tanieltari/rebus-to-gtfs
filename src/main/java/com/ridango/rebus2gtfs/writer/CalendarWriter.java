@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -43,8 +44,8 @@ public class CalendarWriter {
                     WriterUtil.toCsvString(c.isFriday()),
                     WriterUtil.toCsvString(c.isSaturday()),
                     WriterUtil.toCsvString(c.isSunday()),
-                    c.getStartDate().toString(),
-                    c.getEndDate().toString()
+                    WriterUtil.toCsvString(c.getStartDate()),
+                    WriterUtil.toCsvString(c.getEndDate())
             );
         }
         csvWriter.flush();

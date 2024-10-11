@@ -1,6 +1,7 @@
 package com.ridango.rebus2gtfs.writer;
 
 import com.ridango.rebus2gtfs.gtfs.CalendarDate;
+import com.ridango.rebus2gtfs.util.WriterUtil;
 import de.siegmar.fastcsv.writer.CsvWriter;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,7 @@ public class CalendarDateWriter {
         for (var c : calendarDates) {
             csvWriter.writeRecord(
                     c.getServiceId(),
-                    c.getDate().toString(),
+                    WriterUtil.toCsvString(c.getDate()),
                     c.getExceptionType().toString()
             );
         }
