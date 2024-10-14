@@ -60,7 +60,7 @@ public class Main {
 
         // Map to GTFS data
         gtfsData.setCalendars(CalendarMapper.mapCalendar(rebusData));
-        gtfsData.setCalendarDates(CalendarDateMapper.mapCalendarDates(rebusData));
+        gtfsData.setCalendarDates(CalendarDateMapper.mapCalendarDates(rebusData, gtfsData));
         gtfsData.setStops(StopMapper.mapStops(rebusData));
         gtfsData.setShapes(ShapeMapper.mapShapes(rebusData));
         gtfsData.setAgencies(AgencyMapper.mapAgencies());
