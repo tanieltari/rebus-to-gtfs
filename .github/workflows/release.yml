@@ -1,0 +1,33 @@
+name: Build JAR & publish artifact under releases
+on:
+  push:
+    branches: ["main"]
+env:
+  build-number: ${GITHUB_RUN_NUMBER}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'gradle'
+    - name: Build with Gradle
+      run: ./gradlew shadowJar
+    - name: Name artifact
+      run: mkdir publish && cp builds/libs/rebus-to-gtfs-1.0-SNAPSHOT-all.jar.jar publish/rebus-to-gtfs-${{ env.build-number }}.jar
+    - uses: actions/upload-artifact@v3
+      with:
+        name: REBUS to GTFS
+        path: publish
+        retention-days: 1
+    - uses: marvinpinto/action-automatic-releases@v1.2.1
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ github.run_number }}"
+        title: "REBUS to GTFS build ${{ github.run_number }}"
+        prerelease: true
+        files: publish/*.jar
