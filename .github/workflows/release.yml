@@ -18,7 +18,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew shadowJar
     - name: Name artifact
-      run: mkdir publish && cp builds/libs/rebus-to-gtfs-1.0-SNAPSHOT-all.jar publish/rebus-to-gtfs-${{ env.build-number }}.jar
+      run: mkdir publish && cp build/libs/rebus-to-gtfs-1.0-SNAPSHOT-all.jar publish/rebus-to-gtfs-${{ env.build-number }}.jar
     - uses: actions/upload-artifact@v3
       with:
         name: REBUS to GTFS
